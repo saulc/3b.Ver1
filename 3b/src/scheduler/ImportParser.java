@@ -44,4 +44,17 @@ public class ImportParser {
 		};
 		in.close();
 	}
+	
+	public int getSize(){
+		return requests.size();
+	}
+	
+	public Request getRequest(int index){
+		return requests.get(index);
+	}
+	
+	public ArrayList<Request> getArrayList(){
+		return requests;
+	}
+	
 }
