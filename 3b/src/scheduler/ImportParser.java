@@ -1,7 +1,14 @@
 package scheduler;
-//Methods:
+//METHODS:
+//void parse: inputs(Scanner)
+//int getSize: inputs(none)
+//Request getRequest: input(none);
+//ArrayList<Request> getArrayList(): input(none);
 //
-
+//USE:
+//created new ImportParser object. Then create scanner object.
+//use parse method with argument of scanner object
+//parse into ArrayList of Request; please adjust parse method and when Request is changed
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,18 +19,16 @@ public class ImportParser {
 	
 	ImportParser(){};
 	
-	public void parse(File file, Scanner in){
+	public void parse(Scanner in){
 		String line;
 		String word;
 		char letter;
-		int arrayCount;
-		String[] request = new String[4]; 
+		ArrayList<String> request = new ArrayList<String>();
 		
 		
 		while(in.hasNext()){
 			line = in.nextLine();//System.out.println(line);
 			word = "";
-			arrayCount = 0;
 			
 			for(int count = 0; count < line.length(); count++){
 				letter = line.charAt(count);
@@ -31,19 +36,19 @@ public class ImportParser {
 					//System.out.print(letter);
 					word += letter;
 				} else {
-					request[arrayCount] = word;
-					arrayCount++;
+					request.add(word);
 					//System.out.print("AR" + arrayCount);
 					word = "";
 				}
 			}
 			
-			Request mRequest = new Request(request[0], 
-						request[1], 
-						request[2], 
-						request[3]);
+			Request mRequest = new Request(request.get(0), 
+						request.get(1), 
+						request.get(2), 
+						request.get(3));
 			
 			requests.add(mRequest);
+			request.clear();
 		};
 		in.close();
 	}
