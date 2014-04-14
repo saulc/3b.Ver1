@@ -11,10 +11,14 @@ package scheduler;
 //parse into ArrayList of Request; please adjust parse method and when Request is changed
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+
 public class ImportParser {
+	private JFileChooser fileChooser = new JFileChooser(); 
 	private ArrayList<Request> requests = new ArrayList<Request>(); //Parse csv into this ArrayList
 	
 	ImportParser(){};
@@ -51,6 +55,22 @@ public class ImportParser {
 			request.clear();
 		};
 		in.close();
+	}
+	
+	public void importFile(){
+		int returnVal = fileChooser.showOpenDialog(null);
+		File myfile;
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			myfile = fileChooser.getSelectedFile();
+			Scanner in;
+			try {
+				in = new Scanner(myfile);
+				parse(in);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public int getSize(){

@@ -20,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 public class TestFrame extends JFrame {
 	
 	private JPanel contentPane;
-	private JFileChooser fileChooser = new JFileChooser(); 
 	private ImportParser importParser = new ImportParser();
 	/**
 	 * Launch the application.
@@ -58,21 +57,7 @@ public class TestFrame extends JFrame {
 		JMenuItem mntmImport = new JMenuItem("Import");
 		mntmImport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int returnVal = fileChooser.showOpenDialog(null);
-				File myfile;
-				if(returnVal == JFileChooser.APPROVE_OPTION){
-					myfile = fileChooser.getSelectedFile();
-					Scanner in;
-					try {
-						in = new Scanner(myfile);
-						importParser.parse(in);
-						
-						
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+				importParser.importFile();
 			}
 		});
 		mnFile.add(mntmImport);
