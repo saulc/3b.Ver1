@@ -4,11 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,6 +18,8 @@ public class TestFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private ImportParser importParser = new ImportParser();
+	private ExportCSV exporter = new ExportCSV();
+	private ArrayList<Request> requests = new ArrayList();
 	/**
 	 * Launch the application.
 	 */
@@ -63,6 +62,11 @@ public class TestFrame extends JFrame {
 		mnFile.add(mntmImport);
 		
 		JMenuItem mntmExport = new JMenuItem("Export");
+		mntmExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exporter.saveFile(requests);
+			}
+		});
 		mnFile.add(mntmExport);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
