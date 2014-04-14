@@ -1,25 +1,27 @@
 package scheduler;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.BevelBorder;
-
-import java.awt.Toolkit;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 
 
 public class TestFrame extends JFrame {
-
+	
 	private JPanel contentPane;
-
+	private JFileChooser fileChooser = new JFileChooser(); 
+	private ImportParser importParser = new ImportParser();
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +56,25 @@ public class TestFrame extends JFrame {
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmImport = new JMenuItem("Import");
+		mntmImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int returnVal = fileChooser.showOpenDialog(null);
+				File myfile;
+				if(returnVal == JFileChooser.APPROVE_OPTION){
+					myfile = fileChooser.getSelectedFile();
+					Scanner in;
+					try {
+						in = new Scanner(myfile);
+						importParser.parse(in);
+						
+						
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
 		mnFile.add(mntmImport);
 		
 		JMenuItem mntmExport = new JMenuItem("Export");
