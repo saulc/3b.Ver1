@@ -4,16 +4,24 @@ public class Course {
 	
 	private String Dept;
 	private String Code;
+	private String Name;
 	private Instructor Prof;
+	private TimeBlock Block;
 	
-	public Course(String department, String code, Instructor prof)
+	public Course(String department, String name, TimeBlock block, Instructor prof)
 	{
 		Dept = department;
-		Code = code;
-		if(prof != null)
-			Prof = prof;
+		Name = name;
+		Block = block;
+		Prof = prof;
 	}
 	
+	public String getName(){
+		return Name;
+	}
+	public TimeBlock getTimeBlock(){
+		return Block;
+	}
 	public String getDept()
 	{
 		return Dept; //return the department, such as Math and CS
@@ -22,6 +30,14 @@ public class Course {
 	public String getCode()
 	{
 		return Code; //return the course number
+	}
+	public void setCode(String code){
+		Code = code;
+	}
+	public Instructor removeInstructor(){
+		Instructor temp = Prof;
+		Prof = null;
+		return temp;
 	}
 	public Instructor getInstructor(){
 		return Prof;
