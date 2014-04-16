@@ -1,4 +1,4 @@
-package scheduler;
+package userInterface;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Color;

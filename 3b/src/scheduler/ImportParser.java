@@ -13,12 +13,13 @@ package scheduler;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import list.RequestList;
 import Classes.Course;
 
 public class ImportParser {
-	private RequestList requests = new RequestList(); //Parse csv into this ArrayList
+	private RequestList requests = new RequestList(); //Parse csv into this RequestList
 	
-	ImportParser(){};
+	public ImportParser(){}; //Constructor
 	
 	private void requestAdd(ArrayList<String> request){
 		int listLength = request.size();
@@ -27,10 +28,10 @@ public class ImportParser {
 			requestArray[count] = request.get(count);
 		}
 		requests.add(requestArray);
-	}
+	} //Converts ArrayList to array to import to RequestList
 	
 	
-	public void parse(Scanner in){
+	public void parse(Scanner in){ //Reads one line at a time
 		String line;
 		String word;
 		char letter;

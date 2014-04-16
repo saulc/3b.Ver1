@@ -1,4 +1,4 @@
-package scheduler;
+package userInterface;
 
 import java.util.Vector;
 

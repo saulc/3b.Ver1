@@ -1,4 +1,4 @@
-package scheduler;
+package list;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class RequestList {
 
 	private ArrayList<String[]> items = new ArrayList<String[]>();
 	
-	RequestList(){
+	public RequestList(){
 		
 	};
 	
