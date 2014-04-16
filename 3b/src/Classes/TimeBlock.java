@@ -15,6 +15,13 @@ public class TimeBlock {
 		AM_PM="";
 	}
 	
+	public TimeBlock(String mDay,String mBeginTime, String mEndTime,String mAM_PM){
+		Day = mDay;
+		BeginTime = mBeginTime;
+		EndTime = mEndTime;
+		AM_PM = mAM_PM;
+	}
+	
 	public String getDay(String day)
 	{
 		return Day=day; //return the days, MTWThF
