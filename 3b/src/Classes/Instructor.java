@@ -4,30 +4,46 @@ public class Instructor extends Person {
 	
 	private String ID;
 	private String name;
-	private Boolean Adjunct;
+	private Boolean adjunct;
 	
 	public Instructor()
 	{
 		name="";
 		ID="";
-		Adjunct=false;
+		adjunct=false;
 	}
 	
-	public String getName(String person_name)
-	{
-		return super.getName(person_name); //return instructor's name
+	public Instructor(String mID, String mName, Boolean mAdjunct){
+		name=mName;
+		ID=mID;
+		adjunct=mAdjunct;
 	}
 	
-	public String getID(String person_ID)
+	public String getName()
 	{
-		return ID=person_ID; //return instructor's ID
+		return name; //return instructor's name
 	}
 	
-	public void isAdjunct(String adjunct)
+	public String getID()
 	{
-		if (adjunct.equals("Adjunct"))
-		{
-			Adjunct=true; ////return whether instructor is adjunct or not
-		}
+		return ID; //return instructor's ID
 	}
+	
+	public boolean isAdjunct()
+	{
+		return adjunct;
+	}
+	
+	public void setName(String mName){
+		name = mName;
+	}
+	
+	public void setID(String mID){
+		ID = mID;
+	}
+	
+	public void setAdjunct(boolean mAdjunct){
+		adjunct = mAdjunct;
+	}
+	
 }
