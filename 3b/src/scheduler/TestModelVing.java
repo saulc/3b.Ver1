@@ -24,12 +24,7 @@ public class TestModelVing extends DefaultTableModel{
 		this.addColumn("Data 4");
 	}
 	
-	public void clear(){
-		this.clear();
-	}
-	
 	public void checkCourseList(){
-		clear();
 		for(int index = 0; index < courses.getSize(); index++ ){
 			this.addRow(new Object[]{
 					courses.getCourse(index).getDept(),
@@ -41,7 +36,6 @@ public class TestModelVing extends DefaultTableModel{
 	}
 	
 	public void checkTimeBlockList(){
-		clear();
 		for(int index = 0; index < timeblocks.getSize(); index++ ){
 			this.addRow(new Object[]{
 					timeblocks.getTimeBlock(index).getDay(),
@@ -49,11 +43,11 @@ public class TestModelVing extends DefaultTableModel{
 					timeblocks.getTimeBlock(index).getEndTime(),
 					timeblocks.getTimeBlock(index).getAMPM()
 			});
+			System.out.println(timeblocks.getTimeBlock(index).getDay());
 		}
 	}
 	
 	public void checkInstructorList(){
-		clear();
 		for(int index = 0; index < instructors.getSize(); index++ ){
 			this.addRow(new Object[]{
 					instructors.getInstructor(index).getID(),
@@ -65,7 +59,6 @@ public class TestModelVing extends DefaultTableModel{
 	}
 	
 	public void checkRequestList(){
-		clear();
 		for(int index = 0; index < requests.getSize(); index++ ){
 			this.addRow(new Object[]{
 					requests.getItem(index, 1),

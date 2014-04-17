@@ -18,11 +18,13 @@ public class CourseList {
 		for(int index = 0; index < requests.getSize(); index++){
 			for(int cindex = 0; cindex < 4; cindex++){
 				// refer to Course(String department, String name, TimeBlock block, Instructor prof)
-				course_index = cindex + 6;
-				courses.add(new Course(requests.getItem(index, course_index),
+				course_index = cindex + 5;
+				courses.add(new Course(
+					requests.getItem(index, course_index),
 					requests.getItem(index, course_index),
 					timeblocks.getTimeBlock(timeIndex),
-					instructors.getInstructor(index) ));
+					instructors.getInstructor(index) )
+				);
 				timeIndex++;
 			}
 			

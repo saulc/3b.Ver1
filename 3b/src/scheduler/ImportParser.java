@@ -10,8 +10,12 @@ package scheduler;
 //use parse method with argument of scanner object
 //parse into ArrayList of Request; please adjust parse method and when Request is changed
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JFileChooser;
 
 import list.CourseList;
 import list.InstructorList;
@@ -19,6 +23,7 @@ import list.RequestList;
 import list.TimeBlockList;
 
 public class ImportParser {
+	private JFileChooser chooser = new JFileChooser();
 	private RequestList requests = new RequestList(); //Parse csv into this RequestList
 	private InstructorList instructors = new InstructorList();
 	private TimeBlockList timeblocks = new TimeBlockList();
@@ -39,6 +44,23 @@ public class ImportParser {
 		instructors.generateList(requests);
 		timeblocks.generateList(requests);
 		courses.generateList(requests,instructors,timeblocks);
+	}
+	
+	public void chooseFile(){
+		int returnVal = chooser.showOpenDialog(null);
+		File myfile = new File("save.txt");
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			myfile = chooser.getSelectedFile();
+			Scanner in;
+			try {
+				in = new Scanner(myfile);
+				parse(in);
+				in.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void parse(Scanner in){ //Reads one line at a time
@@ -62,7 +84,7 @@ public class ImportParser {
 					word = "";
 				}
 			}
-			
+			request.add(word);
 			requestAdd(request);
 		};
 		

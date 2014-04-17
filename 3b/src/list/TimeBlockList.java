@@ -13,13 +13,33 @@ public class TimeBlockList {
 		String time = "";
 		for(int index = 1; index < requests.getSize(); index++){ //ignore first line, title line
 			time = requests.getItem(index, 9);
-			parseTime(time);
+			System.out.println(time);
+			if(time != null)
+				parseTime(time);
+			else
+				timeblocks.add(new TimeBlock(null,null,null,null));
+			
 			time = requests.getItem(index, 10);
-			parseTime(time);
+			System.out.println(time);
+			if(time != null)
+				parseTime(time);
+			else
+				timeblocks.add(new TimeBlock(null,null,null,null));
+			
 			time = requests.getItem(index, 11);
-			parseTime(time);
+			System.out.println(time);
+			if(time != null)
+				parseTime(time);
+			else
+				timeblocks.add(new TimeBlock(null,null,null,null));
+			
 			time = requests.getItem(index, 12);
-			parseTime(time);
+			System.out.println(time);
+			if(time != null)
+				parseTime(time);
+			else
+				timeblocks.add(new TimeBlock(null,null,null,null));
+			
 		}
 		uniqueParse();
 	}
@@ -42,32 +62,24 @@ public class TimeBlockList {
 	}
 	
 	private void parseTime(String time){
-		//parsing Mon/Wed - 9:45 - 12:15pm
+		//parsing Mon/Wed - 9:45 - 12:15 pm
 		String Day, BeginTime, EndTime, AM_PM;
 		char letter;
-		String[] word = {"","",""};
+		String[] word = {"","","","","",""};
 		int wordIndex = 0;
 		for(int count = 0; count < time.length(); count++){
 			letter = time.charAt(count);
-			if(letter != ' ' || letter != '-'){
+			if(letter != ' '){
 				//System.out.print(letter);
-				word[wordIndex] += letter;
-			} else if(word.length > 0){
+				word[wordIndex] = word[wordIndex] + letter;
+			} else {
 				wordIndex++;
 			}
 		}
 		Day = word[0];
-		BeginTime = word[1];
-		wordIndex = 0;
-		for(int count = 0; count < word[2].length(); count++){
-			letter = word[2].charAt(count);
-			if(!Character.isLetter(letter)){
-				wordIndex++;
-			}
-			word[wordIndex] += letter;
-		}
-		EndTime = word[0];
-		AM_PM = word[1];
+		BeginTime = word[2];
+		EndTime = word[4];
+		AM_PM = word[5];
 		timeblocks.add(new TimeBlock(Day, BeginTime, EndTime, AM_PM));
 	}
 	
