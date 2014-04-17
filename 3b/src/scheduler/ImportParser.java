@@ -13,11 +13,16 @@ package scheduler;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import list.CourseList;
+import list.InstructorList;
 import list.RequestList;
-import Classes.Course;
+import list.TimeBlockList;
 
 public class ImportParser {
 	private RequestList requests = new RequestList(); //Parse csv into this RequestList
+	private InstructorList instructors = new InstructorList();
+	private TimeBlockList timeblocks = new TimeBlockList();
+	private CourseList courses = new CourseList();
 	
 	public ImportParser(){}; //Constructor
 	
@@ -30,6 +35,11 @@ public class ImportParser {
 		requests.add(requestArray);
 	} //Converts ArrayList to array to import to RequestList
 	
+	private void generateList(){
+		instructors.generateList(requests);
+		timeblocks.generateList(requests);
+		courses.generateList(requests,instructors,timeblocks);
+	}
 	
 	public void parse(Scanner in){ //Reads one line at a time
 		String line;
@@ -57,6 +67,7 @@ public class ImportParser {
 		};
 		
 		in.close();
+		generateList();
 	}
 	
 	public int getSize(){
@@ -69,6 +80,18 @@ public class ImportParser {
 	
 	public RequestList getRequestList(){
 		return requests;
+	}
+	
+	public CourseList getCourseList(){
+		return courses;
+	}
+	
+	public InstructorList getInstructorList(){
+		return instructors;
+	}
+	
+	public TimeBlockList getTimeBlockList(){
+		return timeblocks;
 	}
 	
 }

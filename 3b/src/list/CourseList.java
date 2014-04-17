@@ -9,7 +9,7 @@ public class CourseList {
 	
 	public CourseList(){}
 	
-	public void createList(RequestList requests, InstructorList instructors, TimeBlockList timeblocks){
+	public void generateList(RequestList requests, InstructorList instructors, TimeBlockList timeblocks){
 		requests.remove(0);
 		for(int index = 0; index < requests.size(); index++){
 		courses.add(new Course(requests.getItem(index, 1),
