@@ -6,16 +6,25 @@ import Classes.Instructor;
 
 public class InstructorList {
 	private ArrayList<Instructor> instructors = new ArrayList<Instructor>();
-	
+	private ArrayList<Instructor> uniqueInstructors = new ArrayList<Instructor>();
 	public InstructorList(){}
 	
-	private boolean checkDuplicate(String ID){
-		for(int index = 0; index < instructors.size(); index++){
-			if(instructors.get(index).getID() == ID){
+	private boolean checkDuplicate(Instructor instructor){
+		String ID = instructor.getID();
+		for(int index = 0; index < uniqueInstructors.size(); index++){
+			if(uniqueInstructors.get(index).getID() == ID){
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	private void uniqueParse(){
+		for(int index = 0; index < instructors.size(); index++){
+			if(!checkDuplicate(instructors.get(index))){
+				uniqueInstructors.add(instructors.get(index));
+			}		
+		}
 	}
 	
 	public void generateList(RequestList requests){
@@ -29,10 +38,9 @@ public class InstructorList {
 			} else {
 				Adjunct = false;
 			}
-			if(!checkDuplicate(ID)){
-				instructors.add(new Instructor(name,ID,Adjunct));
-			}
+			instructors.add(new Instructor(name,ID,Adjunct));
 		}
+		uniqueParse();
 	}
 	
 	public Instructor getInstructor(int index){

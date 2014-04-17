@@ -22,24 +22,24 @@ public class TimeBlock {
 		AM_PM = mAM_PM;
 	}
 	
-	public String getDay(String day)
+	public String getDay()
 	{
-		return Day=day; //return the days, MTWThF
+		return Day; //return the days, MTWThF
 	}
 	
-	public String getBeginTime(String begin)
+	public String getBeginTime()
 	{
-		return BeginTime=begin; //return the beginning time
+		return BeginTime; //return the beginning time
 	}
 	
-	public String getEndTime(String end)
+	public String getEndTime()
 	{
-		return EndTime=end; //return the end time
+		return EndTime; //return the end time
 	}
 	
-	public String getAMPM(String am_pm)
+	public String getAMPM()
 	{
-		return AM_PM=am_pm; //return it's morning or afternoon
+		return AM_PM; //return it's morning or afternoon
 	}
 
 }

@@ -6,7 +6,7 @@ import Classes.TimeBlock;
 
 public class TimeBlockList {
 	private ArrayList<TimeBlock> timeblocks = new ArrayList<TimeBlock>();
-	
+	private ArrayList<TimeBlock> uniqueTimeBlocks = new ArrayList<TimeBlock>();
 	public TimeBlockList(){};
 	
 	public void generateList(RequestList requests){
@@ -21,9 +21,23 @@ public class TimeBlockList {
 			time = requests.getItem(index, 12);
 			parseTime(time);
 		}
+		uniqueParse();
 	}
 	
-	private boolean checkDuplicate(){
+	private boolean checkDuplicate(TimeBlock time){
+		String day = time.getDay();
+		String begin = time.getBeginTime();
+		String end = time.getEndTime();
+		String AM = time.getAMPM();
+		
+		for(int index = 0; index < uniqueTimeBlocks.size(); index++){
+			if(day == uniqueTimeBlocks.get(index).getDay()
+					&& begin == uniqueTimeBlocks.get(index).getBeginTime()
+					&& end == uniqueTimeBlocks.get(index).getEndTime()
+					&& AM == uniqueTimeBlocks.get(index).getAMPM()){
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -54,8 +68,18 @@ public class TimeBlockList {
 		}
 		EndTime = word[0];
 		AM_PM = word[1];
-		if(!checkDuplicate()){
-			timeblocks.add(new TimeBlock(Day, BeginTime, EndTime, AM_PM));
+		timeblocks.add(new TimeBlock(Day, BeginTime, EndTime, AM_PM));
+	}
+	
+	private void uniqueParse(){
+		for(int index = 0; index < timeblocks.size(); index++){
+			if(!checkDuplicate(timeblocks.get(index))){
+				uniqueTimeBlocks.add(timeblocks.get(index));
+			}
 		}
+	}
+	
+	public TimeBlock getTimeBlock(int index){
+		return timeblocks.get(index);
 	}
 }

@@ -26,4 +26,8 @@ public class RequestList {
 		items.add(input);
 	}
 	
+	public void remove(int index){
+		items.remove(index);
+	}
+	
 }
