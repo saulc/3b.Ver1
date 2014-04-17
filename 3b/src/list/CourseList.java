@@ -3,6 +3,8 @@ package list;
 import java.util.ArrayList;
 
 import Classes.Course;
+import Classes.Instructor;
+import Classes.TimeBlock;
 
 public class CourseList {
 	private ArrayList<Course> courses = new ArrayList<Course>();
@@ -11,12 +13,19 @@ public class CourseList {
 	
 	public void generateList(RequestList requests, InstructorList instructors, TimeBlockList timeblocks){
 		requests.remove(0);
-		for(int index = 0; index < requests.size(); index++){
-		courses.add(new Course(requests.getItem(index, 1),
-				requests.getItem(index, 2),
-				timeblocks.getTimeBlock(index),
-				instructors.getInstructor(index) )
-		);
+		int timeIndex = 0;
+		int course_index;
+		for(int index = 0; index < requests.getSize(); index++){
+			for(int cindex = 0; cindex < 4; cindex++){
+				// refer to Course(String department, String name, TimeBlock block, Instructor prof)
+				course_index = cindex + 6;
+				courses.add(new Course(requests.getItem(index, course_index),
+					requests.getItem(index, course_index),
+					timeblocks.getTimeBlock(timeIndex),
+					instructors.getInstructor(index) ));
+				timeIndex++;
+			}
+			
 		}
 	}
 	

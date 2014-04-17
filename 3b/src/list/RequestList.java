@@ -10,7 +10,7 @@ public class RequestList {
 		
 	};
 	
-	public int size(){
+	public int getSize(){
 		return items.size();
 	}
 	

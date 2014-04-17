@@ -71,7 +71,7 @@ public class ImportParser {
 	}
 	
 	public int getSize(){
-		return requests.size();
+		return requests.getSize();
 	}
 	
 	public String[] getRequest(int index){

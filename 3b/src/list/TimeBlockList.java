@@ -11,7 +11,7 @@ public class TimeBlockList {
 	
 	public void generateList(RequestList requests){
 		String time = "";
-		for(int index = 1; index < requests.size(); index++){ //ignore first line, title line
+		for(int index = 1; index < requests.getSize(); index++){ //ignore first line, title line
 			time = requests.getItem(index, 9);
 			parseTime(time);
 			time = requests.getItem(index, 10);
@@ -81,5 +81,9 @@ public class TimeBlockList {
 	
 	public TimeBlock getTimeBlock(int index){
 		return timeblocks.get(index);
+	}
+	
+	public int getSize(){
+		return timeblocks.size();
 	}
 }

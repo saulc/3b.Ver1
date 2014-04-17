@@ -30,7 +30,7 @@ public class InstructorList {
 	public void generateList(RequestList requests){
 		String name, ID;
 		boolean Adjunct;
-		for(int count = 1; count < requests.size(); count++){ //ignore first line, title line
+		for(int count = 1; count < requests.getSize(); count++){ //ignore first line, title line
 			name = requests.getItem(count, 1);
 			ID = requests.getItem(count, 2);
 			if(requests.getItem(count, 3) == "yes"){
@@ -41,6 +41,10 @@ public class InstructorList {
 			instructors.add(new Instructor(name,ID,Adjunct));
 		}
 		uniqueParse();
+	}
+	
+	public int getSize(){
+		return instructors.size();
 	}
 	
 	public Instructor getInstructor(int index){
