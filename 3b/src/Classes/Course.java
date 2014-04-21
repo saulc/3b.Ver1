@@ -8,6 +8,12 @@ public class Course {
 	private Instructor Prof;
 	private TimeBlock Block;
 	
+	public Course()
+	{
+		Dept = "";
+		Name = "";
+	}
+	
 	public Course(String department, String name, TimeBlock block, Instructor prof)
 	{
 		Dept = department;
