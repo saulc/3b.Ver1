@@ -15,16 +15,30 @@ public class CourseList {
 		requests.remove(0);
 		int timeIndex = 0;
 		int course_index;
+		String course = "";
+		String dept = "";
 		for(int index = 0; index < requests.getSize(); index++){
 			for(int cindex = 0; cindex < 4; cindex++){
 				// refer to Course(String department, String name, TimeBlock block, Instructor prof)
 				course_index = cindex + 5;
+				course = requests.getItem(index, course_index);
+				
+				if(course.isEmpty()){
+					dept = "";
+				} else if(course.charAt(0) == 'C'){
+					dept = "CS";
+				} else {
+					dept = "Math";
+				}
+				
 				courses.add(new Course(
-					requests.getItem(index, course_index),
-					requests.getItem(index, course_index),
+					dept,
+					course,
 					timeblocks.getTimeBlock(timeIndex),
-					instructors.getInstructor(index) )
+					instructors.getInstructor(index) 
+					)
 				);
+				
 				timeIndex++;
 			}
 			
